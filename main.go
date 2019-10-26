@@ -24,8 +24,19 @@ func cmd(s []string){
 }
 
 func initProject(s []string){
-	schema := types.ParseSchema(s[2])
-	scaffold.GenMain(schema)
+	d := types.InitPaths(s[2], s[3])
+	os.MkdirAll(d.ProjectRoot, os.ModePerm)
+	os.MkdirAll(d.ModelPath, os.ModePerm)
+	os.MkdirAll(d.CmdPath, os.ModePerm)
+	os.MkdirAll(d.RoutesPath, os.ModePerm)
+	os.MkdirAll(d.TestsPath, os.ModePerm)
+	os.MkdirAll(d.DbPath, os.ModePerm)
+	os.MkdirAll(d.CachePath, os.ModePerm)
+	scaffold.GenMainRoutes(d)
+	scaffold.GenMainModel(d)
+	scaffold.GenDb(d)
+	scaffold.GenMain(d)
+
 }
 
 func genScaffold(s []string){
@@ -35,6 +46,7 @@ func genScaffold(s []string){
 }
 
 func main() {
-	argsWithProg := os.Args
+	//argsWithProg := os.Args
+	argsWithProg := []string{"duh", "new", "jdkealy", "fuck_bfa" }
 	cmd(argsWithProg)
 }

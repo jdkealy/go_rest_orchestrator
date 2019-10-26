@@ -9,22 +9,23 @@ import (
 	"text/template"
 )
 
-func GenMain(s types.Schema){
-	t := genMain(s)
+func GenMainModel(s types.Schema){
+	t := genModelType(s)
 	d1 := []byte(t.String())
-	path := s.ProjectRoot + "/main.go"
+	path := s.ModelPath + "/model.go"
 	err := ioutil.WriteFile(path, d1, 0644)
 	if err != nil {
 		log.Fatal("error writing main file")
 	}
 }
 
-func genMain(d types.Schema) bytes.Buffer {
-	t := template.Must(template.New("models").Parse(templates.MainTemplate))
+func genModelType(d types.Schema) bytes.Buffer {
+	t := template.Must(template.New("models").Parse(templates.ModelTypeTemplate))
 	var buf bytes.Buffer
 	err := t.Execute(&buf, d)
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Println(buf.String())
 	return buf
 }
