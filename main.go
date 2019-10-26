@@ -46,7 +46,6 @@ func genScaffold(s []string){
 }
 
 func main() {
-	//argsWithProg := os.Args
-	argsWithProg := []string{"duh", "new", "jdkealy", "meow" }
+	argsWithProg := os.Args
 	cmd(argsWithProg)
 }
