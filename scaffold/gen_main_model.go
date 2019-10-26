@@ -26,6 +26,5 @@ func genModelType(d types.Schema) bytes.Buffer {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println(buf.String())
 	return buf
 }

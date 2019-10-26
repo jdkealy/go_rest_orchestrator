@@ -13,8 +13,6 @@ func GenDb(s types.Schema){
 	t := genDb(s)
 	d1 := []byte(t.String())
 	path := s.DbPath + "/db.go"
-	str := t.String()
-	log.Println(str)
 	err := ioutil.WriteFile(path, d1, 0644)
 	if err != nil {
 		log.Fatal("error writing main file")
