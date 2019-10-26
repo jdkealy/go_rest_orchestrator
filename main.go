@@ -40,11 +40,12 @@ func initProject(s []string){
 
 func genScaffold(s []string){
 	schema := types.ParseSchema(s[2])
-	scaffold.Routes(schema)
-	scaffold.Models(schema)
+	scaffold.GenRouteFile(schema)
+	scaffold.GenModels(schema)
 }
 
 func main() {
 	argsWithProg := os.Args
+	//argsWithProg := []string{"bla", "scaffold", "User", "foo:text"}
 	cmd(argsWithProg)
 }

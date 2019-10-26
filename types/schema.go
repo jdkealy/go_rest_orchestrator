@@ -69,7 +69,7 @@ func InitPaths(owner string, project string )Schema {
 }
 
 func ParseSchema(modelName string) Schema{
-	var d Schema
+	d := InitPaths("jdkealy", "bar")
 	pluralize := pluralize.NewClient()
 	pluralModelName := pluralize.Plural(modelName)
 	lowercasePluralModelName := strings.ToLower(pluralModelName)
@@ -84,6 +84,5 @@ func ParseSchema(modelName string) Schema{
 	flag.StringVar(&d.PluralLowerModel, "PluralLowerModel", d.PluralLowerModel, "")
 	flag.StringVar(&d.Name, "name", "FOO", "")
 	flag.Parse()
-
 	return d
 }

@@ -5,8 +5,8 @@ import (
 	"github.com/jdkealy/go_rails/types"
 )
 
-func genRouteFile(s types.Schema) {
-	path := s.ModelPath + s.PluralLowerModel + ".go"
-	doGenAndSave(s, path, templates.ModelTemplate)
+func GenRouteFile(s types.Schema) {
+	path := s.RoutesPath + "/" + s.PluralLowerModel + ".go"
+	doGenAndSave(s, path, templates.RoutesTemplate)
 	return
 }

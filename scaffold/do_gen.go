@@ -8,12 +8,13 @@ import (
 	"text/template"
 )
 
-func doGenAndSave(s types.Schema, templateName string, path string ){
+func doGenAndSave(s types.Schema, path string , templateName string ){
 	t := doGenTemplate(s, templateName )
 	d1 := []byte(t.String())
 	err := ioutil.WriteFile(path, d1, 0644)
+	log.Println("GENERATING", path)
 	if err != nil {
-		log.Fatal("error writing main file")
+		log.Fatal(err)
 	}
 }
 

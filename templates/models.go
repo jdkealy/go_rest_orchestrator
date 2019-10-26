@@ -2,7 +2,7 @@ package templates
 
 var ModelTemplate = `package models
 
-import "github.com/jinzhu/gorm"
+type {{.Model}} struct {}
 
 func (h *Model) Create{{.Model}}({{.LowerModel}} {{.Model}}) (*{{.Model}},  error ){
 	a := h.Db.Create(&{{.LowerModel}})

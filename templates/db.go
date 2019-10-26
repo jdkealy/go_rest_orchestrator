@@ -1,7 +1,6 @@
 package templates
 
-var DbTemplate = `
-package db
+var DbTemplate = `package db
 
 import (
 	"github.com/jinzhu/gorm"
