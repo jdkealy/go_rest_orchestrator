@@ -1,8 +1,6 @@
 package templates
 
-var ModelTypeTemplate = `
-
-package models
+var ModelTypeTemplate = `package models
 
 import "github.com/jinzhu/gorm"
 

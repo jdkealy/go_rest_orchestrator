@@ -36,7 +36,6 @@ func initProject(s []string){
 	scaffold.GenMainModel(d)
 	scaffold.GenDb(d)
 	scaffold.GenMain(d)
-
 }
 
 func genScaffold(s []string){

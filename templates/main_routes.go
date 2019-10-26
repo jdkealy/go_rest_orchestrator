@@ -1,7 +1,6 @@
 package templates
 
-var MainRoutes = `
-package routes
+var MainRoutes = `package routes
 
 import (
     "github.com/gin-contrib/sessions"

@@ -1,14 +1,13 @@
 package templates
 
-var MainTemplate = `
-package main
+var MainTemplate = `package main
 
 import (
 	"fmt"
 	redis "github.com/go-redis/redis/v7"
-	"github.com/jdkealy/fuck_bfa/db"
-	"github.com/jdkealy/fuck_bfa/internal/pkg/models"
-	"github.com/jdkealy/fuck_bfa/routes"
+	"{{.GitDbPath}}"
+	"{{.GitModelsPath}}"
+	"{{.GitRoutesPath}}"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 

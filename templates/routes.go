@@ -1,7 +1,6 @@
 package templates
 
-var RoutesTemplate = `
-package routes
+var RoutesTemplate = `package routes
 
 import (
 	"encoding/json"
