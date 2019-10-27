@@ -10,6 +10,7 @@ type Model struct {
 
 func NewModel(db *gorm.DB) Model{
 	/* AUTO_MIGRATION_PLACEHOLDER */
+	autoMigrate(db)
 	return Model{Db: db}
 }
 `

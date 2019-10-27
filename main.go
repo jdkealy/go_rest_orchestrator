@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"github.com/jdkealy/go_rails/scaffold"
 	"github.com/jdkealy/go_rails/types"
 	"log"
 	"os"
+	"os/exec"
 )
 
 
@@ -23,6 +25,17 @@ func cmd(s []string){
 	}
 }
 
+func goModInit(d types.Schema ){
+	cmd := "/bin/sh"
+	args := []string{"init.sh", d.ProjectRoot}
+
+	if err := exec.Command(cmd, args...).Run(); err != nil {
+		log.Println("WTTF HAPPENEE")
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+	log.Println("Initialized Go modules")
+}
 func initProject(s []string){
 	d := types.InitPaths(s[2], s[3])
 	os.MkdirAll(d.ProjectRoot, os.ModePerm)
@@ -36,6 +49,7 @@ func initProject(s []string){
 	scaffold.GenMainModel(d)
 	scaffold.GenDb(d)
 	scaffold.GenMain(d)
+	goModInit(d)
 }
 
 func genScaffold(s []string){
@@ -46,6 +60,5 @@ func genScaffold(s []string){
 
 func main() {
 	argsWithProg := os.Args
-	//argsWithProg := []string{"bla", "scaffold", "User", "foo:text"}
 	cmd(argsWithProg)
 }
