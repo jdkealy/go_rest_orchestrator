@@ -28,9 +28,8 @@ func cmd(s []string){
 func goModInit(d types.Schema ){
 	cmd := "/bin/sh"
 	args := []string{"init.sh", d.ProjectRoot}
-
+	log.Println(cmd, args)
 	if err := exec.Command(cmd, args...).Run(); err != nil {
-		log.Println("WTTF HAPPENEE")
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}

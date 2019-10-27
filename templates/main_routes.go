@@ -9,7 +9,6 @@ import (
     "github.com/gin-gonic/gin"
     redis "github.com/go-redis/redis/v7"
     "{{.GitModelsPath}}"
-    "log"
 )
 
 type Router struct {
@@ -24,10 +23,6 @@ func newRoutes(model *models.Model, cache *redis.Client) Router {
     }
 }
 
-func registerRoutes(router Router, c *gin.Engine ){
-    log.Println(router, c)
-}
-
 func Routes(model *models.Model, client *redis.Client){
     r := gin.Default()
     // SESSIONS
@@ -35,7 +30,7 @@ func Routes(model *models.Model, client *redis.Client){
     sessionNames := []string{"A"}
     r.Use(sessions.SessionsMany(sessionNames, store))
     routes := newRoutes(model, client )
-    registerRoutes(routes, r)
+    routes.registerRoutes(r)
     r.GET("/footest", func(c *gin.Context) {
         c.JSON(200, gin.H{
             "message": "FOO",

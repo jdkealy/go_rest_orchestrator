@@ -1,6 +1,5 @@
 package templates
 
-
 var AutoMigrateTemplate = `package models
 
 import "github.com/jinzhu/gorm"
