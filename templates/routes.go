@@ -10,7 +10,7 @@ import (
 func (h *Router) Attach{{.Model}}Routes(r *gin.Engine) {
 	v1 := r.Group("/{{.PluralLowerModel}}")
 	v1.GET("/", h.All{{.PluralModel}})
-	v1.GET("/new", h.New{{.Model}})
+	v1.POST("/new", h.New{{.Model}})
 	v1.PUT("/:id", h.Edit{{.Model}})
 	v1.DELETE("/:id", h.Delete{{.Model}})
 }
