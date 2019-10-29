@@ -10,7 +10,7 @@ import (
 func (h *Router) Attach{{.Model}}Routes(r *gin.Engine) {
 	v1 := r.Group("/{{.PluralLowerModel}}")
 	v1.GET("/", h.All{{.PluralModel}})
-	v1.POST("/new", h.New{{.Model}})
+	v1.POST("/", h.New{{.Model}})
 	v1.PUT("/:id", h.Edit{{.Model}})
 	v1.DELETE("/:id", h.Delete{{.Model}})
 }
@@ -40,10 +40,12 @@ func (h *Router) All{{.PluralModel}}(c *gin.Context) {
 }
 
 func (h *Router) New{{.Model}}(c *gin.Context) {
-	{{.LowerModel}}, err := h.Model.Create{{.Model}}(models.{{.Model}}{})
+	var {{.LowerModel}} models.{{.Model}}
+	c.Bind(&{{.LowerModel}})
+	res, err := h.Model.Create{{.Model}}({{.LowerModel}})
 	if err != nil {
 		c.JSON(500, err)
 	}
-	c.JSON(200, {{.LowerModel}})
+	c.JSON(200, res)
 }
 `
