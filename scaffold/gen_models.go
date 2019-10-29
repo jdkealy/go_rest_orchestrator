@@ -42,6 +42,8 @@ func fieldsToModel(fields []fields) []string {
 
 func GenModels(s types.Schema){
 	path := s.ModelPath + "/" + s.PluralLowerModel + ".go"
+
+	/* for now hardcode to test */
 	doGenAndSave(s, path, templates.ModelTemplate)
 
 	path = s.ModelPath + "/" + auto_migrate_file
