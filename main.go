@@ -7,8 +7,14 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
+	"runtime"
 )
 
+var (
+	_, b, _, _ = runtime.Caller(0)
+	Root = filepath.Join(filepath.Dir(b))
+)
 func cmd(s []string){
 	switch s[1]{
 	case "new": {
@@ -46,7 +52,14 @@ func initProject(s []string){
 	scaffold.GenMainModel(d)
 	scaffold.GenDb(d)
 	scaffold.GenMain(d)
+
+	source := fmt.Sprint(Root + "/js")
+	dest := fmt.Sprint(d.ProjectRoot + "/views")
+	log.Println("HMM?")
+	log.Println(source, dest )
+	scaffold.CpR(source, dest)
 	goModInit(d)
+
 }
 
 func genScaffold(s []string){
@@ -56,7 +69,7 @@ func genScaffold(s []string){
 }
 
 func main() {
-	//strs := []string{"meow", "scaffold", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
-	argsWithProg := os.Args
-	cmd(argsWithProg)
+	strs := []string{"meow", "new", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
+	//argsWithProg := os.Args
+	cmd(strs)
 }
