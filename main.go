@@ -9,8 +9,6 @@ import (
 	"os/exec"
 )
 
-
-
 func cmd(s []string){
 	switch s[1]{
 	case "new": {
@@ -36,7 +34,7 @@ func goModInit(d types.Schema ){
 	log.Println("Initialized Go modules")
 }
 func initProject(s []string){
-	d := types.InitPaths(s[2], s[3])
+	d := scaffold.InitPaths(s[2], s[3])
 	os.MkdirAll(d.ProjectRoot, os.ModePerm)
 	os.MkdirAll(d.ModelPath, os.ModePerm)
 	os.MkdirAll(d.CmdPath, os.ModePerm)
@@ -52,12 +50,13 @@ func initProject(s []string){
 }
 
 func genScaffold(s []string){
-	schema := types.ParseSchema(s[2])
+	schema := scaffold.ParseSchema(s[2],s[3],s[4],s[5])
 	scaffold.GenRouteFile(schema)
 	scaffold.GenModels(schema)
 }
 
 func main() {
+	//strs := []string{"meow", "scaffold", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
 	argsWithProg := os.Args
 	cmd(argsWithProg)
 }

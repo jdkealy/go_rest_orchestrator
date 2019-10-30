@@ -3,8 +3,8 @@ package templates
 var ModelTemplate = `package models
 
 type {{.Model}} struct {
-	ID int ` + "`" + `gorm:"AUTO_INCREMENT"` + "`" + `
-}
+	{{range .StructFields}}{{.}}
+	{{end}}}
 
 func (h *Model) Create{{.Model}}({{.LowerModel}} {{.Model}}) (*{{.Model}},  error ){
 	a := h.Db.Create(&{{.LowerModel}})

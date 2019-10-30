@@ -1,6 +1,7 @@
 package scaffold
 
 import (
+	"github.com/jdkealy/go_rails/types"
 	"github.com/stretchr/testify/suite"
 	"log"
 	"testing"
@@ -11,12 +12,12 @@ type TestGenModelsSuite struct {
 }
 
 func (suite *TestGenModelsSuite) TestModels() {
-	 field := fields{
+	 field := types.Fields{
 		Name: "foo",
 		Gorm: "BAR",
 		Json: "meow",
 	}
-	var fields []fields
+	var fields []types.Fields
 	fields = append(fields, field)
 	model := fieldsToModel(fields)
 	log.Println(model)

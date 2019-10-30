@@ -6,32 +6,25 @@ import (
 	"github.com/jdkealy/go_rails/types"
 )
 
-type fields struct {
-	Name string
-	Type string
-	Gorm string
-	Json string
-}
-
-func gorm(fields fields) string {
+func gorm(fields types.Fields) string {
 	if fields.Gorm != "" {
 		return fmt.Sprintf(`gorm:"%s"`, fields.Gorm)
 	}
 	return ""
 }
 
-func json(fields fields) string {
+func jsonStr(fields types.Fields) string {
 	if fields.Json != "" {
 		return fmt.Sprintf(`json:"%s"`, fields.Json)
 	}
 	return ""
 }
 
-func fieldToString(field fields) string {
-	return field.Name + " " + field.Type + "`" + gorm(field) + " " + json(field) + "`"
+func fieldToString(field types.Fields) string {
+	return field.Name + " " + field.Type + "`" + gorm(field) + " " + jsonStr(field) + "`"
 }
 
-func fieldsToModel(fields []fields) []string {
+func fieldsToModel(fields []types.Fields) []string {
 	var strs []string
 	for _, item := range(fields){
 		str := fieldToString(item)

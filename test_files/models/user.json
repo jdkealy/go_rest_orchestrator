@@ -1,0 +1,16 @@
+[{
+    "Name":  "Id",
+    "Type": "string",
+    "Gorm": "PRIMARY_KEY",
+    "Json": "id"
+  },
+  {
+    "Name":  "Email",
+    "Type": "string",
+    "Json": "email"
+  },
+  {
+    "Name":  "Title",
+    "Type": "string",
+    "Json": "title"
+  }]

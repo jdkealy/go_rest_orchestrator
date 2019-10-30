@@ -11,7 +11,6 @@ type ExampleTestSuite struct {
 }
 
 func (suite *ExampleTestSuite) TestModels() {
-
 	assert.Equal(suite.T(), 5, 4)
 }
 func TestExampleTestSuite(t *testing.T) {
