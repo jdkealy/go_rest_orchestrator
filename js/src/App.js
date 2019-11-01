@@ -1,5 +1,5 @@
 import React from 'react';
-import Users from './pages/users/list'
+import Users from '../../templates/js/users/list'
 import './App.css';
 
 function App() {

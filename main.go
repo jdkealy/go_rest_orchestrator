@@ -39,6 +39,7 @@ func goModInit(d types.Schema ){
 	}
 	log.Println("Initialized Go modules")
 }
+
 func initProject(s []string){
 	d := scaffold.InitPaths(s[2], s[3])
 	os.MkdirAll(d.ProjectRoot, os.ModePerm)
@@ -55,10 +56,9 @@ func initProject(s []string){
 
 	source := fmt.Sprint(Root + "/js")
 	dest := fmt.Sprint(d.ProjectRoot + "/views")
-	log.Println("HMM?")
-	log.Println(source, dest )
-	scaffold.CpR(source, dest)
 	goModInit(d)
+	scaffold.CpR(source, dest)
+
 
 }
 
@@ -69,7 +69,7 @@ func genScaffold(s []string){
 }
 
 func main() {
-	strs := []string{"meow", "new", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
-	//argsWithProg := os.Args
-	cmd(strs)
+	//strs := []string{"meow", "new", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
+	argsWithProg := os.Args
+	cmd(argsWithProg)
 }

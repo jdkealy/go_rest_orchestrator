@@ -4,7 +4,7 @@ var RoutesTemplate = `package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/jdkealy/bar/internal/pkg/models"
+	"{{.GitModelsPath}}"
 )
 
 func (h *Router) Attach{{.Model}}Routes(r *gin.Engine) {
