@@ -71,8 +71,8 @@ func genScaffold(s []string){
 }
 
 func main() {
-	strs := []string{"meow", "scaffold", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
+	//strs := []string{"meow", "scaffold", "jdkealy", "barr", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
 	//strs := []string{"meow", "new", "jdkealy", "bar"}
-	//argsWithProg := os.Args
+	strs := os.Args
 	cmd(strs)
 }

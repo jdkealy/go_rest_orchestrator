@@ -68,10 +68,10 @@ func ParseSchema(owner string, project string, modelName string, path string) ty
 
 	views_path := fmt.Sprintf(`%s/views`, d.ProjectRoot)
 	js_model_path := fmt.Sprintf(`%s/src/models/%s.js`, views_path, modelName )
-	js_new_page_path := fmt.Sprintf(`%s/src/%s/new.js`, views_path, modelName )
-	js_list_page_path := fmt.Sprintf(`%s/src/%s/list.js`, views_path, modelName )
+	js_new_page_path := fmt.Sprintf(`%s/src/pages/%s/new.js`, views_path, modelName )
+	js_list_page_path := fmt.Sprintf(`%s/src/pages/%s/list.js`, views_path, modelName )
 	js_models_path := fmt.Sprintf(`%s/src/models/`, views_path )
-	js_views_path :=  fmt.Sprintf(`%s/src/%s/`, views_path )
+	js_views_path :=  fmt.Sprintf(`%s/src/pages/%s/`, views_path, modelName )
 
 	d.JsViewsPath = js_views_path
 	d.JsModelsPath = js_models_path

@@ -31,15 +31,6 @@ class CounterContainer extends Container<CounterState> {
 				console.log(error);
 			});
 	}
-
-	update() {
-		this.setState({ count: this.state.count - 1 });
-	}
-
-	destroy() {
-		this.setState({ count: this.state.count - 1 });
-	}
-
 }
 
 const groups = new CounterContainer();

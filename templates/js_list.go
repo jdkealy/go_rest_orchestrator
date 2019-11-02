@@ -1,13 +1,12 @@
 package templates
 
 var JsListTemplate = `
-import {{.PluralLowerModel}} from "../{{.Model}}"
 import React from "react";
+import users from "../../models/{{.Model}}"
+import fields from './fields'
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import TableHeadCmp from '../../components/table_head'
+import TableBodyCmp from '../../components/table_body'
 import { Provider, Subscribe } from 'unstated';
 import ItemCreate from './new'
 
@@ -18,21 +17,8 @@ class ItemsTable extends React.Component {
 	render(){
 		return (
 			<Table>
-				<TableHead>
-        			<TableRow><TableCell>ID</TableCell><TableCell>Name</TableCell><TableCell>DOB</TableCell></TableRow>
-				</TableHead>
-				<TableBody>
-					{ 
-						{{.PluralLowerModel}}.state.items.map(function(item, index){
-	                	return (
-	                		<TableRow key={ index }>
-	                			<TableCell>{item.id}</TableCell>
-	                			<TableCell>{item.name}</TableCell>
-	                			<TableCell>{item.dob}</TableCell>
-                			</TableRow>
-	            		);
-	              	})}
-				</TableBody>            	
+				<TableHeadCmp fields={fields.listFields} />
+				<TableBodyCmp items={ {{.PluralLowerModel}}.state.items } fields={fields.listFields} />
 			</Table>
 		)
 	}
@@ -44,7 +30,8 @@ export default function {{.PluralModel}}() {
 			<ItemCreate />
 			<Provider>
 				<Subscribe to={[{{.PluralLowerModel}}]}>
-					{ {{.PluralLowerModel}} => (
+					{ 
+					{{.PluralLowerModel}} => (
 						<ItemsTable />
 					)}
 				</Subscribe>

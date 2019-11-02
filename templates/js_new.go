@@ -2,7 +2,8 @@ package templates
 
 var JsLFormTemplate = `
 import React, { useState } from "react";
-import {{.PluralLowerModel}} from "../{{.Model}}"
+import {{.PluralLowerModel}} from "../../models/{{.Model}}"
+import fields from './fields'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -28,47 +29,35 @@ const useStyles = makeStyles(theme => ({
 	},
 }));
 
-const fields = [
-	{
-		label: "Name",
-		field: "name",
-		id: "name"
-	},
-	{
-		label: "DOB",
-		field: "dob",
-		id: "dob"
-	}
-]
+
+
 export default function ItemCreate(props) {
 	var initialState = {}
-	fields.map((field)=>{
-		return (initialState[field.field] = "");
-	})
+	fields.newFormFields.map((field)=>{return (initialState[field.field] = "");})
 	const [node, setNode] = useState(initialState);
+
 	const classes = useStyles();
+
 	const onChange = function(e, item){
 		node[item.field] = e.target.value;
 		setNode(node);
 	}
+
 	const onSubmit = function(e){
 		{{.PluralLowerModel}}.create(node)
 		e.preventDefault();
 	}
+
 	return (
 		<form onSubmit={onSubmit} className={classes.fullWidth}>
 			<div>
-				{fields.map(function(item, index){
+				{fields.newFormFields.map(function(item, index){
 					return (
 						<div key={item.field}>
 						<TextField
 							id="filled-name"
 							label={item.label}
-							onChange={(e) => {
-
-								onChange(e, item)
-
-							}}
+							onChange={(e) => {onChange(e, item)}}
 					        className={classes.textField}
 							margin="normal"
 						/>
