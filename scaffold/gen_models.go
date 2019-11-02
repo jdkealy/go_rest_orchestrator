@@ -4,8 +4,12 @@ import (
 	"fmt"
 	"github.com/jdkealy/go_rails/templates"
 	"github.com/jdkealy/go_rails/types"
+	"log"
 	"os"
 )
+
+const import_substr =  "AUTOGEN_IMPORTS"
+const js_route_config_substr =  "AUTOGEN_CONFIG"
 
 func gorm(fields types.Fields) string {
 	if fields.Gorm != "" {
@@ -34,6 +38,15 @@ func fieldsToModel(fields []types.Fields) []string {
 	return strs
 }
 
+func fieldsToRoute(fields []types.Fields) []string {
+	var strs []string
+	for _, item := range(fields){
+		str := fieldToString(item)
+		strs = append(strs, str)
+	}
+	return strs
+}
+
 func GenModels(s types.Schema){
 	path := s.ModelPath + "/" + s.PluralLowerModel + ".go"
 
@@ -53,9 +66,16 @@ func GenModels(s types.Schema){
 func GenJs(s types.Schema){
 	os.MkdirAll(s.JsModelsPath, os.ModePerm)
 	os.MkdirAll(s.JsViewsPath, os.ModePerm)
-
 	doGenAndSave(s, s.JsPageListPath, templates.JsListTemplate)
+	doGenAndSave(s, s.JsPageFieldsPath, templates.JsFieldsTemplate)
 	doGenAndSave(s, s.JsPageNewPath, templates.JsLFormTemplate)
 	doGenAndSave(s, s.JsModelPath, templates.JsModelTemplate)
+	err := AppendStringToLine(s.JsRoutesConfigPath, js_route_config_substr, s.JsRoutesConfig)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	/* add the JS route */
+	/* add the JS fields */
 	return
 }
