@@ -17,7 +17,11 @@ type Schema struct {
 	GitRoutesPath string
 	GitDbPath string
 	GitModelsPath string
-
+	JsModelPath string
+	JsModelsPath string
+	JsViewsPath string
+	JsPageListPath string
+	JsPageNewPath string
 	Type string
 	Model string
 	LowerModel string

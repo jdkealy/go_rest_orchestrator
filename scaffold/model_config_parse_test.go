@@ -22,6 +22,11 @@ type ModelConfigParseSuite struct {
 	suite.Suite
 }
 
+func (suite *ModelConfigParseSuite) TestGoFmt() {
+	s := fmt.Sprintf(`%s%s%s`, "FOO", "BAR", "MEOW")
+	assert.Equal(suite.T(), "FOOBARMEOW", s)
+
+}
 func (suite *ModelConfigParseSuite) TestModels() {
 	path := fmt.Sprintf(`%s/%s`, Root, userPath)
 	fields, err := parseJsonConfig(path)

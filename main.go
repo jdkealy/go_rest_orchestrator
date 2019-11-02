@@ -56,8 +56,8 @@ func initProject(s []string){
 
 	source := fmt.Sprint(Root + "/js")
 	dest := fmt.Sprint(d.ProjectRoot + "/views")
-	goModInit(d)
 	scaffold.CpR(source, dest)
+	goModInit(d)
 
 
 }
@@ -66,10 +66,13 @@ func genScaffold(s []string){
 	schema := scaffold.ParseSchema(s[2],s[3],s[4],s[5])
 	scaffold.GenRouteFile(schema)
 	scaffold.GenModels(schema)
+	scaffold.GenJs(schema)
+
 }
 
 func main() {
-	//strs := []string{"meow", "new", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
-	argsWithProg := os.Args
-	cmd(argsWithProg)
+	strs := []string{"meow", "scaffold", "jdkealy", "bar", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
+	//strs := []string{"meow", "new", "jdkealy", "bar"}
+	//argsWithProg := os.Args
+	cmd(strs)
 }

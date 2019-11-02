@@ -6,7 +6,7 @@ import (
 )
 
 func GenMainModel(s types.Schema){
-	path := s.ModelPath + "/model.go"
+	path := s.ModelPath + "/js_model.go"
 	doGenAndSave(s, path, templates.ModelTypeTemplate)
 
 	path = s.ModelPath + "/" + auto_migrate_file

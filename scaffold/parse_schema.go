@@ -2,6 +2,7 @@ package scaffold
 
 import (
 	"flag"
+	"fmt"
 	"github.com/gertd/go-pluralize"
 	"github.com/jdkealy/go_rails/types"
 	"log"
@@ -20,6 +21,8 @@ func initPaths(owner string, project string, d types.Schema ) types.Schema {
 	git_db_path := git_path + "/db"
 	git_models_path := git_path + "/internal/pkg/models"
 	tests := root + "/tests"
+
+
 	db := root + "/db"
 	cache := root + "/cache"
 
@@ -63,6 +66,18 @@ func ParseSchema(owner string, project string, modelName string, path string) ty
 	d.LowerModel = strings.ToLower(modelName)
 	d.PluralLowerModel = lowercasePluralModelName
 
+	views_path := fmt.Sprintf(`%s/views`, d.ProjectRoot)
+	js_model_path := fmt.Sprintf(`%s/src/models/%s.js`, views_path, modelName )
+	js_new_page_path := fmt.Sprintf(`%s/src/%s/new.js`, views_path, modelName )
+	js_list_page_path := fmt.Sprintf(`%s/src/%s/list.js`, views_path, modelName )
+	js_models_path := fmt.Sprintf(`%s/src/models/`, views_path )
+	js_views_path :=  fmt.Sprintf(`%s/src/%s/`, views_path )
+
+	d.JsViewsPath = js_views_path
+	d.JsModelsPath = js_models_path
+	d.JsModelPath = js_model_path
+	d.JsPageListPath = js_list_page_path
+	d.JsPageNewPath = js_new_page_path
 	flag.StringVar(&d.Owner, "owner", "owner", "")
 	flag.StringVar(&d.Project, "project", "project", "")
 	flag.StringVar(&d.Model, "Model", modelName, "")
