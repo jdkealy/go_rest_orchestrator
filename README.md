@@ -2,8 +2,8 @@
 
 # go_rails
 # usage
-### go get github.com/jdkealy/go_rails
-### go_rails new YOUR_ORG YOUR_PROJECT
-### go_rails scaffold MODEL_NAME
+### go get github.com/jdkealy/go_rest_orchestrator
+### go_rest_orchestrator new YOUR_ORG YOUR_PROJECT
+### go_rest_orchestrator scaffold YOUR ORG YOUR_PROJECT MODEL_NAME /path/to/model.json
 ## an opinionated set of tools to get GOLANG rest API's up and running. 
 # go_rest_orchestrator
