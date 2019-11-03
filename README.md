@@ -6,3 +6,4 @@
 ### go_rails new YOUR_ORG YOUR_PROJECT
 ### go_rails scaffold MODEL_NAME
 ## an opinionated set of tools to get GOLANG rest API's up and running. 
+# go_rest_orchestrator
