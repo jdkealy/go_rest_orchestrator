@@ -1,4 +1,4 @@
-module github.com/jdkealy/go_rails
+module github.com/jdkealy/go_rest_orchestrator
 
 go 1.13
 
