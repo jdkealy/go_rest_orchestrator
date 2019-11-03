@@ -1,6 +1,6 @@
 ![Drag Racing](https://storage.googleapis.com/gopherizeme.appspot.com/gophers/cf7d8c19c020aaa7403991d9799219fca0070011.png)
 
-# go_rails
+# go_rest_orchestrator
 # usage
 ### go get github.com/jdkealy/go_rest_orchestrator
 ### go_rest_orchestrator new YOUR_ORG YOUR_PROJECT
