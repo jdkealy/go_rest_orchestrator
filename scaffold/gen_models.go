@@ -77,6 +77,8 @@ func GenJs(s types.Schema){
 		log.Fatal(err)
 	}
 
+	file_utils.CleanJs(s.JsRoutesConfigPath)
+
 	// generate the string with compnent here
 	str = fmt.Sprintf(
 		`import %s from '../pages/%s/list'

@@ -2,7 +2,7 @@ package templates
 
 var JsListTemplate = `
 import React from "react";
-import users from "../../models/{{.Model}}"
+import {{.PluralLowerModel}} from "../../models/{{.Model}}"
 import fields from './fields'
 import Table from '@material-ui/core/Table';
 import TableHeadCmp from '../../components/table_head'

@@ -42,10 +42,8 @@ function MenuItems (props){
 				open={Boolean(anchorEl)}
 				onClose={handleClose}>
 				{RoutesConfig.map((c) => {
-					return (
-						<a href={c.route}>{c.label}</a>
-					)	
-				})}	        	
+					return (<MenuItem key={c.route} onClick={handleClose}><a href={c.route}>{c.label}</a></MenuItem>)
+				})}
 			</Menu>
   		</div>
 	)

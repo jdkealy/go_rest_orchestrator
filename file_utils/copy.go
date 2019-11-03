@@ -2,8 +2,10 @@ package file_utils
 
 import (
 	"fmt"
+	"github.com/ditashi/jsbeautifier-go/jsbeautifier"
 	"io"
 	"io/ioutil"
+	"log"
 	"os"
 	"path"
 )
@@ -66,4 +68,15 @@ func CpR(src string, dst string) error {
 		}
 	}
 	return nil
+}
+
+
+func CleanJs(path string ) {
+	options := jsbeautifier.DefaultOptions()
+	code := jsbeautifier.BeautifyFile(path, options)
+	bytes := []byte(*code)
+	err := ioutil.WriteFile(path, bytes, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
