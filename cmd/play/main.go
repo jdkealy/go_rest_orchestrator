@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jdkealy/go_rails/file_utils"
+	"github.com/jdkealy/go_rest_orchestrator/file_utils"
 	"log"
 )
 

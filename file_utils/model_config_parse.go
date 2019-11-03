@@ -3,7 +3,7 @@ package file_utils
 import (
 	jsLib "encoding/json"
 	"fmt"
-	"github.com/jdkealy/go_rails/types"
+	"github.com/jdkealy/go_rest_orchestrator/types"
 	"io/ioutil"
 	"os"
 )

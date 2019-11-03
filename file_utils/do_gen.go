@@ -2,7 +2,7 @@ package file_utils
 
 import (
 	"bytes"
-	"github.com/jdkealy/go_rails/types"
+	"github.com/jdkealy/go_rest_orchestrator/types"
 	"io/ioutil"
 	"log"
 	"text/template"

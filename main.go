@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/jdkealy/go_rails/file_utils"
-	"github.com/jdkealy/go_rails/scaffold"
-	"github.com/jdkealy/go_rails/types"
+	"github.com/jdkealy/go_rest_orchestrator/file_utils"
+	"github.com/jdkealy/go_rest_orchestrator/scaffold"
+	"github.com/jdkealy/go_rest_orchestrator/types"
 	"log"
 	"os"
 	"os/exec"
@@ -72,7 +72,7 @@ func genScaffold(s []string){
 }
 
 func main() {
-	//strs := []string{"meow", "scaffold", "jdkealy", "barr", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
+	//strs := []string{"meow", "scaffold", "jdkealy", "barr", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rest_orchestrator/test_files/models/user.json"}
 	//strs := []string{"meow", "new", "jdkealy", "barr"}
 	strs := os.Args
 	cmd(strs)

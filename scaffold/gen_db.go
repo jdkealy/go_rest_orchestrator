@@ -2,9 +2,9 @@
 package scaffold
 
 import (
-	"github.com/jdkealy/go_rails/file_utils"
-	"github.com/jdkealy/go_rails/templates"
-	"github.com/jdkealy/go_rails/types"
+	"github.com/jdkealy/go_rest_orchestrator/file_utils"
+	"github.com/jdkealy/go_rest_orchestrator/templates"
+	"github.com/jdkealy/go_rest_orchestrator/types"
 )
 
 func GenDb(s types.Schema){

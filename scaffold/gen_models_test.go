@@ -1,7 +1,7 @@
 package scaffold
 
 import (
-	"github.com/jdkealy/go_rails/types"
+	"github.com/jdkealy/go_rest_orchestrator/types"
 	"github.com/stretchr/testify/suite"
 	"log"
 	"testing"
