@@ -1,4 +1,4 @@
-package scaffold
+package file_utils
 
 import (
 	"fmt"
@@ -29,7 +29,7 @@ func (suite *ModelConfigParseSuite) TestGoFmt() {
 }
 func (suite *ModelConfigParseSuite) TestModels() {
 	path := fmt.Sprintf(`%s/%s`, Root, userPath)
-	fields, err := parseJsonConfig(path)
+	fields, err := ParseJsonConfig(path)
 	log.Println(fields)
 	assert.Equal(suite.T(), err, nil)
 }

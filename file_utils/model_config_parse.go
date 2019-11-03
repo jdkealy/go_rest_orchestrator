@@ -1,4 +1,4 @@
-package scaffold
+package file_utils
 
 import (
 	jsLib "encoding/json"
@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func parseJsonConfig(path string ) (*[]types.Fields, error) {
+func ParseJsonConfig(path string ) (*[]types.Fields, error) {
 	var err error
 	// Open our jsonFile
 	jsonFile, err := os.Open(path)

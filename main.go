@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/jdkealy/go_rails/file_utils"
 	"github.com/jdkealy/go_rails/scaffold"
 	"github.com/jdkealy/go_rails/types"
 	"log"
@@ -56,7 +57,7 @@ func initProject(s []string){
 
 	source := fmt.Sprint(Root + "/js")
 	dest := fmt.Sprint(d.ProjectRoot + "/views")
-	scaffold.CpR(source, dest)
+	file_utils.CpR(source, dest)
 	goModInit(d)
 
 
@@ -71,8 +72,8 @@ func genScaffold(s []string){
 }
 
 func main() {
-	strs := []string{"meow", "scaffold", "jdkealy", "barr", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
+	//strs := []string{"meow", "scaffold", "jdkealy", "barr", "User", "/Users/johnkealy/go/src/github.com/jdkealy/go_rails/test_files/models/user.json"}
 	//strs := []string{"meow", "new", "jdkealy", "barr"}
-	//strs := os.Args
+	strs := os.Args
 	cmd(strs)
 }

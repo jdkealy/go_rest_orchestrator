@@ -39,7 +39,7 @@ export default function ItemCreate(props) {
 	const classes = useStyles();
 
 	const onChange = function(e, item){
-		node[item.field] = e.target.value;
+		node[item.id] = e.target.value;
 		setNode(node);
 	}
 

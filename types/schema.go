@@ -3,6 +3,7 @@ package types
 type RoutesJsonField struct {
 	Name string `json:"name"`
 	Id string  `json:"id"`
+	Route string `json:"route"`
 	Cmp string `json:"cmp"`
 }
 
@@ -14,9 +15,8 @@ type JsModelsJsonFields struct {
 
 type Schema struct {
 	StructFields []string
-	RoutesJsonFields []RoutesJsonField
+	RoutesJsonFields RoutesJsonField
 	JsFieldsConfig string
-	JsRoutesConfig string
 	FullFilePath string
 	DependencyPath string
 	CmdPath string

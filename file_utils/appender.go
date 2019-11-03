@@ -1,4 +1,4 @@
-package scaffold
+package file_utils
 
 import (
 	"bufio"

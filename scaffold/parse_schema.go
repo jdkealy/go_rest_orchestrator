@@ -4,12 +4,18 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/gertd/go-pluralize"
+  "github.com/gertd/go-pluralize"
+	"github.com/jdkealy/go_rails/file_utils"
 	"github.com/jdkealy/go_rails/types"
 	"log"
 	"os"
 	"strings"
 )
+
+var gen_routes_path = "register_routes_gen.go"
+var gen_routes_substr = "REGISTER_ROUTES_GEN"
+var auto_migrate_file = "auto_migrate_gen.go"
+var gen_models_substr = "AUTO_MIGRATE_GEN"
 
 func initPaths(owner string, project string, d types.Schema ) types.Schema {
 	go_root := os.Getenv("GOPATH")
@@ -38,25 +44,14 @@ func InitPaths(owner string, project string ) types.Schema {
 	return initPaths(owner, project, d)
 }
 
-func makeRoutesJson(m []types.Fields ) []types.RoutesJsonField{
-	var routesJsonFields []types.RoutesJsonField
-	for _, i := range m{
-		var rjs = types.RoutesJsonField{
-			Name: i.Name,
-			Id:   i.Name,
-			Cmp:  fmt.Sprintf(i.Name),
-		}
-		routesJsonFields = append(routesJsonFields, rjs)
-	}
-	return routesJsonFields
-}
+
 
 func fieldsToJsonFields(m []types.Fields ) []types.JsModelsJsonFields{
 	var routesJsonFields []types.JsModelsJsonFields
 	for _, i := range m{
 		var rjs = types.JsModelsJsonFields{
 			Name: i.Name,
-			Id:   i.Name,
+			Id:   i.Json,
 			Label:  i.Name,
 		}
 		routesJsonFields = append(routesJsonFields, rjs)
@@ -64,25 +59,35 @@ func fieldsToJsonFields(m []types.Fields ) []types.JsModelsJsonFields{
 	return routesJsonFields
 }
 
+func makeRoutesJson(m types.Schema ) types.RoutesJsonField{
+	return types.RoutesJsonField{
+		Name: m.Model,
+		Id:   m.Model,
+		Route: m.PluralLowerModel,
+		Cmp:  m.Model,
+	}
+}
+
 func ParseSchema(owner string, project string, modelName string, path string) types.Schema{
 	d := InitPaths(owner, project)
-	structFields, err := parseJsonConfig(path)
+	structFields, err := file_utils.ParseJsonConfig(path)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fields := fieldsToModel(*structFields)
 	var modelDef *[]types.Fields
-	modelDef, err = parseJsonConfig(path)
+	modelDef, err = file_utils.ParseJsonConfig(path)
 	log.Println(modelDef)
 
 	jsonFields := fieldsToJsonFields(*structFields)
 	f, _ := json.Marshal(jsonFields)
 	d.JsFieldsConfig = string(f)
 
-	jsonRoutesFields := makeRoutesJson(*structFields)
+	jsonRoutesFields := makeRoutesJson(d)
+	d.RoutesJsonFields = jsonRoutesFields
 	f, _ = json.Marshal(jsonRoutesFields)
-	d.JsRoutesConfig = string(f)
+	d.JsRoutesConfigPath = string(f)
 
 	pluralize := pluralize.NewClient()
 	pluralModelName := pluralize.Plural(modelName)

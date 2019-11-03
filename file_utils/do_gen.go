@@ -1,4 +1,4 @@
-package scaffold
+package file_utils
 
 import (
 	"bytes"
@@ -8,8 +8,8 @@ import (
 	"text/template"
 )
 
-func doGenAndSave(s types.Schema, path string , templateName string ){
-	t := doGenTemplate(s, templateName )
+func DoGenAndSave(s types.Schema, path string , templateName string ){
+	t := DoGenTemplate(s, templateName )
 	d1 := []byte(t.String())
 	err := ioutil.WriteFile(path, d1, 0644)
 	log.Println("GENERATING", path)
@@ -18,7 +18,7 @@ func doGenAndSave(s types.Schema, path string , templateName string ){
 	}
 }
 
-func doGenTemplate(d types.Schema, templateName string ) bytes.Buffer {
+func DoGenTemplate(d types.Schema, templateName string ) bytes.Buffer {
 	t := template.Must(template.New("template").Parse(templateName))
 	var buf bytes.Buffer
 	err := t.Execute(&buf, d)

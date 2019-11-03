@@ -2,13 +2,14 @@ package scaffold
 
 import (
 	"fmt"
+	"github.com/jdkealy/go_rails/file_utils"
 	"github.com/jdkealy/go_rails/templates"
 	"github.com/jdkealy/go_rails/types"
 	"log"
 	"os"
 )
 
-const import_substr =  "AUTOGEN_IMPORTS"
+const js_import_substr =  "AUTOGEN_IMPORTS"
 const js_route_config_substr =  "AUTOGEN_CONFIG"
 
 func gorm(fields types.Fields) string {
@@ -51,31 +52,39 @@ func GenModels(s types.Schema){
 	path := s.ModelPath + "/" + s.PluralLowerModel + ".go"
 
 	/* for now hardcode to test */
-	doGenAndSave(s, path, templates.ModelTemplate)
+	file_utils.DoGenAndSave(s, path, templates.ModelTemplate)
 
 	path = s.ModelPath + "/" + auto_migrate_file
 	str := "\tdb.AutoMigrate(&" + s.Model + "{})\n"
-	err := AppendStringToLine(path, gen_models_substr, str)
+	err := file_utils.AppendStringToLine(path, gen_models_substr, str)
 	if err != nil {
 		//log.Fatal(err)
 	}
-
 }
 
 
 func GenJs(s types.Schema){
 	os.MkdirAll(s.JsModelsPath, os.ModePerm)
 	os.MkdirAll(s.JsViewsPath, os.ModePerm)
-	doGenAndSave(s, s.JsPageListPath, templates.JsListTemplate)
-	doGenAndSave(s, s.JsPageFieldsPath, templates.JsFieldsTemplate)
-	doGenAndSave(s, s.JsPageNewPath, templates.JsLFormTemplate)
-	doGenAndSave(s, s.JsModelPath, templates.JsModelTemplate)
-	err := AppendStringToLine(s.JsRoutesConfigPath, js_route_config_substr, s.JsRoutesConfig)
+	file_utils.DoGenAndSave(s, s.JsPageListPath, templates.JsListTemplate)
+	file_utils.DoGenAndSave(s, s.JsPageFieldsPath, templates.JsFieldsTemplate)
+	file_utils.DoGenAndSave(s, s.JsPageNewPath, templates.JsLFormTemplate)
+	file_utils.DoGenAndSave(s, s.JsModelPath, templates.JsModelTemplate)
+	str := fmt.Sprintf(`{route: "/%s", cmp: %s, label: '%s' },
+	`, s.PluralLowerModel, s.Model, s.PluralModel)
+	err := file_utils.AppendStringToLine(s.JsRoutesConfigPath, js_route_config_substr, str )
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	/* add the JS route */
-	/* add the JS fields */
+	// generate the string with compnent here
+	str = fmt.Sprintf(
+		`import %s from '../pages/%s/list'
+	`, s.Model, s.Model)
+	err = file_utils.AppendStringToLine(s.JsRoutesConfigPath, js_import_substr, str)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	return
 }

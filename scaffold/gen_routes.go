@@ -1,6 +1,7 @@
 package scaffold
 
 import (
+	"github.com/jdkealy/go_rails/file_utils"
 	"github.com/jdkealy/go_rails/templates"
 	"github.com/jdkealy/go_rails/types"
 	"log"
@@ -12,13 +13,13 @@ func attachRouteToString(model string ) string {
 
 func GenRouteFile(s types.Schema) {
 	path := s.RoutesPath + "/" + s.PluralLowerModel + ".go"
-	doGenAndSave(s, path, templates.RoutesTemplate)
+	file_utils.DoGenAndSave(s, path, templates.RoutesTemplate)
 
 	path = s.RoutesPath + "/" + gen_routes_path
 
 	text := attachRouteToString(s.Model)
 
-	err := AppendStringToLine(path, gen_routes_substr, text)
+	err := file_utils.AppendStringToLine(path, gen_routes_substr, text)
 	if err != nil {
 		log.Fatal(err)
 	}
